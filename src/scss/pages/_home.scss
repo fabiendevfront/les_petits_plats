@@ -1,3 +1,35 @@
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
 /*******************/
 /* HOMEPAGE STYLE */
 /******************/
+
+.tags {
+    width: 100%;
+
+    &__list {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 0 0 15px 0;
+    }
+}
+
+.recipe-sorting {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0;
+
+}
+
+.recipes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}

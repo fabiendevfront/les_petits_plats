@@ -1,0 +1,40 @@
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+/******************/
+/* TAG COMPONENT */
+/****************/
+
+.tag-item {
+    position: relative;
+    @include mixins.font-size(14px);
+    color: variables.$white;
+    font-weight: 700;
+    padding: 10px 50px 10px 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+
+
+    &--ingredient {
+        background-color: variables.$blue;
+    }
+
+    &--equipment {
+        background-color: variables.$green;
+    }
+
+    &--utensil {
+        background-color: variables.$orange;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 8px;
+        right: 10px;
+        width: 20px;
+        height: 20px;
+        background: url(../assets/icons/close.svg) no-repeat center;
+        cursor: pointer;
+    }
+}

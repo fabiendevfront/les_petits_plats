@@ -3,13 +3,216 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Custom CSS -->
+    <link href="dist/css/main.css" rel="stylesheet" type="text/css" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="dist/assets/icons/favicon.png" />
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Les petits plats</title>
 </head>
 
 <body>
-
+    <div class="wrapper">
+        <header class="header">
+            <a href="index.html" class="header__link">
+                <h1><img src="dist/assets/images/logo.svg" alt="Logo du site les petits plats" class="header__logo">
+                </h1>
+            </a>
+        </header>
+        <main>
+            <div class="search">
+                <input type="text" class="search__input" name="search" placeholder="Rechercher une recette">
+                <img src="dist/assets/icons/search.svg" alt="Icon search" class="search__icon">
+            </div>
+            <div class="tags">
+                <ul class="tags__list">
+                    <li class="tag-item tag-item--ingredient">Jus de citron</li>
+                    <li class="tag-item tag-item--equipment">Blender</li>
+                    <li class="tag-item tag-item--utensil">Verres</li>
+                </ul>
+            </div>
+            <div class="recipe-sorting">
+                <div class="sort sort--ingredients">
+                    <input type="text" name="ingredients" id="ingredients" placeholder="Ingrédients">
+                </div>
+                <div class="sort sort--equipments">
+                    <input type="text" name="equipments" id="equipments" placeholder="Appareils">
+                </div>
+                <div class="sort sort--utensils">
+                    <input type="text" name="utensils" id="utensils" placeholder="Ustensiles" class>
+                </div>
+            </div>
+            <div class="recipes">
+                <article class="recipe-card">
+                    <div class="recipe-card__picture">
+                        <img src="dist/assets/images/recipe.jpg" alt="">
+                    </div>
+                    <div class="recipe-card__content">
+                        <div class="recipe-card__head">
+                            <h2 class="recipe-card__title">Limonade de Coco</h2>
+                            <div class="recipe-card__duration">
+                                <img src="dist/assets/icons/time.svg" alt="" class="recipe-card__icon">
+                                <h3 class="recipe-card__time">10 min</h3>
+                            </div>
+                        </div>
+                        <div class="recipe-card__body">
+                            <ul class="recipe-card__list">
+                                <li class="recipe-card__ingredient"><strong>Lait de coco:</strong> 400ml</li>
+                                <li class="recipe-card__ingredient"><strong>Jus de citron:</strong> 2</li>
+                                <li class="recipe-card__ingredient"><strong>Crème de coco:</strong> 4 cuillères</li>
+                                <li class="recipe-card__ingredient"><strong>Sucre:</strong> 20g</li>
+                                <li class="recipe-card__ingredient"><strong>Glaçons:</strong> 2</li>
+                            </ul>
+                            <p class="recipe-card__instruction">
+                                Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le
+                                jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+                <article class="recipe-card">
+                    <div class="recipe-card__picture">
+                        <img src="dist/assets/images/recipe.jpg" alt="">
+                    </div>
+                    <div class="recipe-card__content">
+                        <div class="recipe-card__head">
+                            <h2 class="recipe-card__title">Poisson Cru à la tahitienne</h2>
+                            <div class="recipe-card__duration">
+                                <img src="dist/assets/icons/time.svg" alt="" class="recipe-card__icon">
+                                <h3 class="recipe-card__time">60 min</h3>
+                            </div>
+                        </div>
+                        <div class="recipe-card__body">
+                            <ul class="recipe-card__list">
+                                <li class="recipe-card__ingredient"><strong>Lait de coco:</strong> 400ml</li>
+                                <li class="recipe-card__ingredient"><strong>Jus de citron:</strong> 2</li>
+                                <li class="recipe-card__ingredient"><strong>Crème de coco:</strong> 4 cuillères</li>
+                                <li class="recipe-card__ingredient"><strong>Sucre:</strong> 20g</li>
+                                <li class="recipe-card__ingredient"><strong>Glaçons:</strong> 2</li>
+                            </ul>
+                            <p class="recipe-card__instruction">
+                                Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le
+                                jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+                <article class="recipe-card">
+                    <div class="recipe-card__picture">
+                        <img src="dist/assets/images/recipe.jpg" alt="">
+                    </div>
+                    <div class="recipe-card__content">
+                        <div class="recipe-card__head">
+                            <h2 class="recipe-card__title">Poulet coco réunionnais</h2>
+                            <div class="recipe-card__duration">
+                                <img src="dist/assets/icons/time.svg" alt="" class="recipe-card__icon">
+                                <h3 class="recipe-card__time">80 min</h3>
+                            </div>
+                        </div>
+                        <div class="recipe-card__body">
+                            <ul class="recipe-card__list">
+                                <li class="recipe-card__ingredient"><strong>Lait de coco:</strong> 400ml</li>
+                                <li class="recipe-card__ingredient"><strong>Jus de citron:</strong> 2</li>
+                                <li class="recipe-card__ingredient"><strong>Crème de coco:</strong> 4 cuillères</li>
+                                <li class="recipe-card__ingredient"><strong>Sucre:</strong> 20g</li>
+                                <li class="recipe-card__ingredient"><strong>Glaçons:</strong> 2</li>
+                            </ul>
+                            <p class="recipe-card__instruction">
+                                Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le
+                                jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+                <article class="recipe-card">
+                    <div class="recipe-card__picture">
+                        <img src="dist/assets/images/recipe.jpg" alt="">
+                    </div>
+                    <div class="recipe-card__content">
+                        <div class="recipe-card__head">
+                            <h2 class="recipe-card__title">Limonade de Coco</h2>
+                            <div class="recipe-card__duration">
+                                <img src="dist/assets/icons/time.svg" alt="" class="recipe-card__icon">
+                                <h3 class="recipe-card__time">10 min</h3>
+                            </div>
+                        </div>
+                        <div class="recipe-card__body">
+                            <ul class="recipe-card__list">
+                                <li class="recipe-card__ingredient"><strong>Lait de coco:</strong> 400ml</li>
+                                <li class="recipe-card__ingredient"><strong>Jus de citron:</strong> 2</li>
+                                <li class="recipe-card__ingredient"><strong>Crème de coco:</strong> 4 cuillères</li>
+                                <li class="recipe-card__ingredient"><strong>Sucre:</strong> 20g</li>
+                                <li class="recipe-card__ingredient"><strong>Glaçons:</strong> 2</li>
+                            </ul>
+                            <p class="recipe-card__instruction">
+                                Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le
+                                jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+                <article class="recipe-card">
+                    <div class="recipe-card__picture">
+                        <img src="dist/assets/images/recipe.jpg" alt="">
+                    </div>
+                    <div class="recipe-card__content">
+                        <div class="recipe-card__head">
+                            <h2 class="recipe-card__title">Poisson Cru à la tahitienne</h2>
+                            <div class="recipe-card__duration">
+                                <img src="dist/assets/icons/time.svg" alt="" class="recipe-card__icon">
+                                <h3 class="recipe-card__time">60 min</h3>
+                            </div>
+                        </div>
+                        <div class="recipe-card__body">
+                            <ul class="recipe-card__list">
+                                <li class="recipe-card__ingredient"><strong>Lait de coco:</strong> 400ml</li>
+                                <li class="recipe-card__ingredient"><strong>Jus de citron:</strong> 2</li>
+                                <li class="recipe-card__ingredient"><strong>Crème de coco:</strong> 4 cuillères</li>
+                                <li class="recipe-card__ingredient"><strong>Sucre:</strong> 20g</li>
+                                <li class="recipe-card__ingredient"><strong>Glaçons:</strong> 2</li>
+                            </ul>
+                            <p class="recipe-card__instruction">
+                                Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le
+                                jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+                <article class="recipe-card">
+                    <div class="recipe-card__picture">
+                        <img src="dist/assets/images/recipe.jpg" alt="">
+                    </div>
+                    <div class="recipe-card__content">
+                        <div class="recipe-card__head">
+                            <h2 class="recipe-card__title">Poulet coco réunionnais</h2>
+                            <div class="recipe-card__duration">
+                                <img src="dist/assets/icons/time.svg" alt="" class="recipe-card__icon">
+                                <h3 class="recipe-card__time">80 min</h3>
+                            </div>
+                        </div>
+                        <div class="recipe-card__body">
+                            <ul class="recipe-card__list">
+                                <li class="recipe-card__ingredient"><strong>Lait de coco:</strong> 400ml</li>
+                                <li class="recipe-card__ingredient"><strong>Jus de citron:</strong> 2</li>
+                                <li class="recipe-card__ingredient"><strong>Crème de coco:</strong> 4 cuillères</li>
+                                <li class="recipe-card__ingredient"><strong>Sucre:</strong> 20g</li>
+                                <li class="recipe-card__ingredient"><strong>Glaçons:</strong> 2</li>
+                            </ul>
+                            <p class="recipe-card__instruction">
+                                Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le
+                                jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </main>
+    </div>
+    <script src="src/data/recipes.js"></script>
 </body>
 
 </html>

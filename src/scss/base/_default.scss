@@ -10,7 +10,7 @@
 }
 
 *:focus-visible {
-    box-shadow: 0 0 0 4px #000000 !important;
+    box-shadow: 0 0 0 4px variables.$primary-color  !important;
     outline: 0;
 }
 
@@ -20,6 +20,7 @@ html {
 
 body {
     font-family: variables.$font-default;
+    @include mixins.font-size(18px);
     font-weight: 400;
     margin: 0;
 }
@@ -31,4 +32,8 @@ img {
 
 li {
     list-style-type: none;
+}
+
+.wrapper {
+    padding: 40px 8%;
 }

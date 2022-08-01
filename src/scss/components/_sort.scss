@@ -1,0 +1,64 @@
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+/*******************/
+/* SORT COMPONENT */
+/******************/
+
+.sort {
+    position: relative;
+    @include mixins.font-size(18px);
+    border-radius: 5px;
+    padding: 24px 65px 24px 15px;
+    margin: 0 20px 25px 0;
+
+    &--ingredients {
+        background-color: variables.$blue;
+
+        input {
+            background-color: variables.$blue;
+        }
+    }
+
+    &--equipments {
+        background-color: variables.$green;
+
+        input {
+            background-color: variables.$green;
+        }
+    }
+
+    &--utensils {
+        background-color: variables.$orange;
+
+        input {
+            background-color: variables.$orange;
+        }
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 24px;
+        right: 10px;
+        width: 20px;
+        height: 20px;
+        background: url(../assets/icons/chevron.svg) no-repeat center;
+        cursor: pointer;
+    }
+
+    input {
+        pointer-events: none;
+        color: variables.$white;
+        border: none;
+
+        &::placeholder {
+            color: variables.$white;
+            font-weight: 700;
+        }
+
+        .active {
+            pointer-events: all;
+        }
+    }
+}
