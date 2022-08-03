@@ -15,3 +15,21 @@
     font-size: $size;
     font-size: calculate-rem($size);
 }
+
+/***************/
+/* RESPONSIVE */
+/**************/
+
+// 1. Contain media queries for medium screen
+@mixin medium-break {
+    @media screen and (max-width: map-get(variables.$breakpoints, medium)) {
+        @content;
+    }
+}
+
+// 2. Contain media queries for small screen
+@mixin small-break {
+    @media screen and (max-width: map-get(variables.$breakpoints, small)) {
+        @content;
+    }
+}

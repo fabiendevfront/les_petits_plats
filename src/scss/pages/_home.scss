@@ -25,6 +25,9 @@
     flex-wrap: wrap;
     padding: 0;
 
+    @include mixins.medium-break {
+        justify-content: space-between;
+    }
 }
 
 .recipes {
