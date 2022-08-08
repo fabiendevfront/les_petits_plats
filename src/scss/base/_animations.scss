@@ -1,3 +1,25 @@
 /**************/
 /* KEYFRAMES */
 /*************/
+
+// 1.Open filter animation
+@keyframes open-filter {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+// 2.Close filter animation
+@keyframes close-filter {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}

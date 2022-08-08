@@ -43,17 +43,15 @@ export const recipeTemplate = (data) => {
     };
 
     const createIngredients = () => {
-        const ingredientItem = document.createElement("ul");
-        ingredientItem.classList.add("recipe-card__list");
+        const ingredientList = document.createElement("ul");
+        ingredientList.classList.add("recipe-card__list");
         let ingredientInfos = "";
         ingredients.forEach(ingredient => {
             ingredientInfos += `<li class="recipe-card__ingredient"><strong>${ingredient.ingredient} ${ingredient.quantity || ingredient.unit ? ":" : ""}</strong> ${ingredient.quantity ? ingredient.quantity : ""} ${ingredient.unit ? ingredient.unit : ""}</li>`;
         });
-        ingredientItem.innerHTML = ingredientInfos;
-        return ingredientItem;
+        ingredientList.innerHTML = ingredientInfos;
+        return ingredientList;
     };
-
-
 
     return {
         createRecipeCard,

@@ -333,7 +333,7 @@ template {
 }
 
 *:focus-visible {
-  box-shadow: 0 0 0 4px #D04F4F !important;
+  box-shadow: 0 0 0 4px #000000 !important;
   outline: 0;
 }
 
@@ -369,6 +369,22 @@ a {
 /**************/
 /* KEYFRAMES */
 /*************/
+@keyframes open-filter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes close-filter {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 /*****************/
 /* FILES EXPORT */
 /****************/
@@ -528,44 +544,61 @@ a {
 /*******************/
 /* SORT COMPONENT */
 /******************/
-.sort {
+.filter {
   position: relative;
   font-size: 18px;
   font-size: 1.125rem;
   border-radius: 5px;
-  padding: 24px 65px 24px 15px;
+  padding: 24px 20px 24px 20px;
   margin: 0 20px 25px 0;
+  transition: flex 0.3s linear;
 }
 @media screen and (max-width: 1200px) {
-  .sort {
-    width: 48%;
+  .filter {
+    width: 100%;
     margin-right: 0;
   }
 }
-@media screen and (max-width: 768px) {
-  .sort {
-    width: 100%;
+.filter.active {
+  transition: flex 0.3s linear;
+  flex: 1 0 42%;
+}
+@media screen and (max-width: 1200px) {
+  .filter.active {
+    flex: 0 0 auto;
+    transition: none;
   }
 }
-.sort--ingredients {
+.filter.active input {
+  width: 95%;
+  pointer-events: all;
+}
+.filter.active input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+.filter.active::after {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease-in-out;
+}
+.filter--ingredients {
   background-color: #3282F7;
 }
-.sort--ingredients input {
+.filter--ingredients input {
   background-color: #3282F7;
 }
-.sort--equipments {
+.filter--appliances {
   background-color: #68D9A4;
 }
-.sort--equipments input {
+.filter--appliances input {
   background-color: #68D9A4;
 }
-.sort--utensils {
+.filter--ustensils {
   background-color: #ED6454;
 }
-.sort--utensils input {
+.filter--ustensils input {
   background-color: #ED6454;
 }
-.sort::after {
+.filter::after {
   content: "";
   position: absolute;
   top: 24px;
@@ -574,18 +607,51 @@ a {
   height: 20px;
   background: url(../assets/icons/chevron.svg) no-repeat center;
   cursor: pointer;
+  transition: transform 0.3s ease-in-out;
 }
-.sort input {
+.filter input {
   pointer-events: none;
   color: #ffffff;
   border: none;
+  padding-left: 15px;
 }
-.sort input::placeholder {
+.filter input::placeholder {
   color: #ffffff;
   font-weight: 700;
 }
-.sort input .active {
-  pointer-events: all;
+.filter__list {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  display: none;
+  flex-wrap: wrap;
+  margin: 20px 0 0 0;
+  padding: 0 20px 10px 20px;
+  z-index: 10;
+}
+.filter__list--ingredient {
+  background-color: #3282F7;
+}
+.filter__list--appliance {
+  background-color: #68D9A4;
+}
+.filter__list--ustensil {
+  background-color: #ED6454;
+}
+.filter__item {
+  color: #ffffff;
+  font-size: 18px;
+  font-size: 1.125rem;
+  flex: 0 0 33.33%;
+  margin: 0 0 15px 0;
+  padding: 8px 12px 8px 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+.filter__item:hover {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 /*****************/
@@ -620,15 +686,16 @@ a {
   margin: 0 0 15px 0;
 }
 
-.recipe-sorting {
+.filters {
+  position: relative;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   padding: 0;
 }
 @media screen and (max-width: 1200px) {
-  .recipe-sorting {
+  .filters {
     justify-content: space-between;
   }
 }

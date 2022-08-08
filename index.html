@@ -7,7 +7,7 @@
     <!-- Custom CSS -->
     <link href="dist/css/main.css" rel="stylesheet" type="text/css" />
     <!-- Custom JS -->
-    <script type="module" src="src/scripts/pages/app.js"></script>
+    <script type="module" src="src/scripts/app.js"></script>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="dist/assets/icons/favicon.png" />
     <title>Les petits plats</title>
@@ -16,10 +16,12 @@
 <body>
     <div class="wrapper">
         <header class="header">
-            <a href="index.html" class="header__link">
-                <h1><img src="dist/assets/images/logo.svg" alt="Logo du site les petits plats" class="header__logo">
-                </h1>
-            </a>
+
+            <h1>
+                <a href="index.html" class="header__link">
+                    <img src="dist/assets/images/logo.svg" alt="Logo du site les petits plats" class="header__logo">
+                </a>
+            </h1>
         </header>
         <main>
             <div class="search">
@@ -33,15 +35,15 @@
                     <li class="tag-item tag-item--utensil">Verres</li>
                 </ul>
             </div>
-            <div class="recipe-sorting">
-                <div class="sort sort--ingredients">
+            <div class="filters">
+                <div class="filter filter--ingredients" id="Ingrédients">
                     <input type="text" name="ingredients" id="ingredients" placeholder="Ingrédients">
                 </div>
-                <div class="sort sort--equipments">
+                <div class="filter filter--appliances" id="Appareils">
                     <input type="text" name="equipments" id="equipments" placeholder="Appareils">
                 </div>
-                <div class="sort sort--utensils">
-                    <input type="text" name="utensils" id="utensils" placeholder="Ustensiles" class>
+                <div class="filter filter--ustensils" id="Ustensiles">
+                    <input type="text" name="ustensils" id="ustensils" placeholder="Ustensiles">
                 </div>
             </div>
             <div class="recipes"></div>

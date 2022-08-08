@@ -18,10 +18,11 @@
     }
 }
 
-.recipe-sorting {
+.filters {
+    position: relative;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     padding: 0;
 

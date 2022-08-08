@@ -1,0 +1,131 @@
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+/*******************/
+/* SORT COMPONENT */
+/******************/
+
+.filter {
+    position: relative;
+    @include mixins.font-size(18px);
+    border-radius: 5px;
+    padding: 24px 20px 24px 20px;
+    margin: 0 20px 25px 0;
+    transition: flex 0.3s linear;
+
+    @include mixins.medium-break {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    &.active {
+        transition: flex 0.3s linear;
+        flex: 1 0 42%;
+
+        @include mixins.medium-break {
+            flex: 0 0 auto;
+            transition: none;
+        }
+
+        input {
+            width: 95%;
+            pointer-events: all;
+
+            &::placeholder {
+                color: rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        &::after {
+            transform: rotate(180deg);
+            transition: transform 0.3s ease-in-out;
+        }
+    }
+
+    &--ingredients {
+        background-color: variables.$blue;
+
+        input {
+            background-color: variables.$blue;
+        }
+    }
+
+    &--appliances {
+        background-color: variables.$green;
+
+        input {
+            background-color: variables.$green;
+        }
+    }
+
+    &--ustensils {
+        background-color: variables.$orange;
+
+        input {
+            background-color: variables.$orange;
+        }
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 24px;
+        right: 10px;
+        width: 20px;
+        height: 20px;
+        background: url(../assets/icons/chevron.svg) no-repeat center;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    input {
+        pointer-events: none;
+        color: variables.$white;
+        border: none;
+        padding-left: 15px;
+
+        &::placeholder {
+            color: variables.$white;
+            font-weight: 700;
+        }
+    }
+
+    &__list {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        display: none;
+        flex-wrap: wrap;
+        margin: 20px 0 0 0;
+        padding: 0 20px 10px 20px;
+        z-index: 10;
+
+        &--ingredient {
+            background-color: variables.$blue;
+        }
+
+        &--appliance {
+            background-color: variables.$green;
+        }
+
+        &--ustensil {
+            background-color: variables.$orange;
+        }
+    }
+
+    &__item {
+        color: variables.$white;
+        @include mixins.font-size(18px);
+        flex: 0 0 33.33%;
+        margin: 0 0 15px 0;
+        padding: 8px 12px 8px 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+    }
+}
