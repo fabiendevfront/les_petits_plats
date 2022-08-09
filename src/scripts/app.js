@@ -2,6 +2,7 @@ import { recipes } from "../data/recipes.js";
 import { recipeTemplate } from "./models/Recipe.js";
 import { filterTemplate } from "./models/Filter.js";
 import { toggleFilter } from "./utils/filter.js";
+import { search } from "./utils/search.js";
 
 // Stores recipes data during initialization
 export let allRecipes = [];
@@ -86,6 +87,7 @@ const init = () => {
     allRecipes = [...recipes];
     displayRecipesCards(allRecipes);
     displayFilters(allRecipes);
+    search(allRecipes);
 };
 
 // Init App
