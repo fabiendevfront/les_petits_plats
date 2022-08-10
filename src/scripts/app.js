@@ -1,6 +1,6 @@
 import { recipes } from "../data/recipes.js";
-import { recipeTemplate } from "./models/Recipe.js";
-import { filterTemplate } from "./models/Filter.js";
+import { recipeModel } from "./models/RecipeModel.js";
+import { filterModel } from "./models/FilterModel.js";
 import { toggleFilter } from "./utils/filter.js";
 import { search } from "./utils/search.js";
 
@@ -11,31 +11,34 @@ export let allRecipes = [];
 const displayRecipesCards = async (recipes) => {
     const recipesSection = document.querySelector(".recipes");
     await recipes.forEach((data) => {
-        const recipeCard = recipeTemplate(data).createRecipeCard();
+        const recipeCard = recipeModel(data).createRecipeCard();
         recipesSection.appendChild(recipeCard);
     });
 };
 
 // Display the filters of the tags
-const displayFilters = (recipes) => {
+const displayFilters = (allRecipes) => {
+    const allFilters = filterModel().getAllFilters(allRecipes);
+
     const ingredientsSection = document.querySelector(".filter--ingredients");
-    const ingredients = getAllIngredients(recipes);
-    const ingredientsDOM = filterTemplate(ingredients, "ingredient").createFilterItem();
+    const ingredients = allFilters.listUniqueIngredients;
+    const ingredientsDOM = filterModel().createFiltersList(ingredients, "ingredient");
     ingredientsSection.appendChild(ingredientsDOM);
 
     const appliancesSection = document.querySelector(".filter--appliances");
-    const appliances = getAllAppliances(recipes);
-    const appliancesDOM = filterTemplate(appliances, "appliance").createFilterItem();
+    const appliances = allFilters.listUniqueAppliances;
+    const appliancesDOM = filterModel().createFiltersList(appliances, "appliance");
     appliancesSection.appendChild(appliancesDOM);
 
     const ustensilsSection = document.querySelector(".filter--ustensils");
-    const ustensils = getAllUstensils(recipes);
-    const ustensilsDOM = filterTemplate(ustensils, "ustensil").createFilterItem();
+    const ustensils = allFilters.listUniqueUstensils;
+    const ustensilsDOM = filterModel().createFiltersList(ustensils, "ustensil");
     ustensilsSection.appendChild(ustensilsDOM);
 };
 
 // Event delegation for toggle filters and displays tags list
 const filters = document.querySelector(".filters");
+console.log(filters);
 
 filters.addEventListener("click", (event) => {
     event.preventDefault();
@@ -47,40 +50,6 @@ filters.addEventListener("click", (event) => {
         return;
     }
 });
-
-// Get all ingredients tags
-const getAllIngredients = (recipes) => {
-    let ingredients = [];
-    recipes.forEach((recipe) => {
-        recipe.ingredients.forEach((element) => {
-            ingredients.push(element.ingredient);
-        });
-    });
-    const listUniqueIngredients = [...new Set(ingredients)].sort();
-    return listUniqueIngredients;
-};
-
-// Get all appliances tags
-const getAllAppliances = (recipes) => {
-    let appliances = [];
-    recipes.forEach((recipe) => {
-        appliances.push(recipe.appliance);
-    });
-    const listUniqueAppliances = [...new Set(appliances)].sort();
-    return listUniqueAppliances;
-};
-
-// Get all ustensils tags
-const getAllUstensils = () => {
-    let ustensils = [];
-    recipes.forEach((recipe) => {
-        recipe.ustensils.forEach((element) => {
-            ustensils.push(element);
-        });
-    });
-    const listUniqueUstensils = [...new Set(ustensils)].sort();
-    return listUniqueUstensils;
-};
 
 // Initialisation on load page
 const init = () => {
