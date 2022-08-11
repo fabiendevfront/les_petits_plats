@@ -5,7 +5,7 @@ import { toggleFilter } from "./utils/filter.js";
 import { search } from "./utils/search.js";
 
 // Stores recipes data during initialization
-export let allRecipes = [];
+export let newDataFormat = [];
 
 // Display the cards of the recipes
 const displayRecipesCards = async (recipes) => {
@@ -36,9 +36,23 @@ const displayFilters = (allRecipes) => {
     ustensilsSection.appendChild(ustensilsDOM);
 };
 
+const reformatData = (recipes) => {
+    let newDataFormat = [];
+    recipes.forEach((recipe) => {
+        let recipeElements = [];
+        recipeElements.push(recipe.name);
+        recipeElements.push(recipe.description);
+        recipeElements.push(recipe.appliance);
+        recipeElements.push(recipe.ustensils.toString());
+        recipeElements.push(recipe.ingredients.map((element) => element.ingredient).toString());
+        newDataFormat.push(recipeElements.join());
+    });
+    console.log(newDataFormat);
+    return newDataFormat;
+};
+
 // Event delegation for toggle filters and displays tags list
 const filters = document.querySelector(".filters");
-console.log(filters);
 
 filters.addEventListener("click", (event) => {
     event.preventDefault();
@@ -53,10 +67,11 @@ filters.addEventListener("click", (event) => {
 
 // Initialisation on load page
 const init = () => {
-    allRecipes = [...recipes];
+    const allRecipes = [...recipes];
     displayRecipesCards(allRecipes);
     displayFilters(allRecipes);
     search(allRecipes);
+    newDataFormat = reformatData([...recipes]);
 };
 
 // Init App
