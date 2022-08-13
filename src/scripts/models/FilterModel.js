@@ -35,7 +35,7 @@ export const filterModel = () => {
     /**
      * filters template
      * @param {Object} - Items list
-    * @param {String} - Filters category
+     * @param {String} - Filters category
      * @returns {HTMLElement}
      */
     const createFiltersList = (data, category) => {

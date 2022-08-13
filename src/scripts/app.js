@@ -1,8 +1,10 @@
 import { recipes } from "../data/recipes.js";
 import { recipeModel } from "./models/RecipeModel.js";
 import { filterModel } from "./models/FilterModel.js";
+import { tagModel } from "./models/TagModel.js";
 import { toggleFilter } from "./utils/filter.js";
 import { search } from "./utils/search.js";
+import { stringReformat } from "./utils/tools.js";
 
 // Stores recipes data during initialization
 export let newDataFormat = [];
@@ -36,30 +38,44 @@ const displayFilters = (allRecipes) => {
     ustensilsSection.appendChild(ustensilsDOM);
 };
 
-const reformatData = (recipes) => {
+// const reformatData = (recipes) => {
+//     let newDataFormat = [];
+//     recipes.forEach((recipe) => {
+//         let recipeElements = [];
+//         recipeElements.push(recipe.name);
+//         recipeElements.push(recipe.description);
+//         recipeElements.push(recipe.appliance);
+//         recipeElements.push(recipe.ustensils.toString());
+//         recipeElements.push(recipe.ingredients.map((element) => element.ingredient).toString());
+//         newDataFormat.push(recipeElements.join());
+//     });
+//     return newDataFormat;
+// };
+
+const  reformatData = (recipes) => {
     let newDataFormat = [];
-    recipes.forEach((recipe) => {
-        let recipeElements = [];
-        recipeElements.push(recipe.name);
-        recipeElements.push(recipe.description);
-        recipeElements.push(recipe.appliance);
-        recipeElements.push(recipe.ustensils.toString());
-        recipeElements.push(recipe.ingredients.map((element) => element.ingredient).toString());
-        newDataFormat.push(recipeElements.join());
+    recipes.forEach(recipe => {
+        const txt = recipe.name.concat(" ", recipe.description)
+            .concat(" ", recipe.appliance)
+            .concat(" ", recipe.ustensils.toString())
+            .concat(" ", recipe.ingredients.map((element) => element.ingredient).toString());
+        newDataFormat.push(recipe, stringReformat(txt));
     });
-    console.log(newDataFormat);
     return newDataFormat;
 };
 
-// Event delegation for toggle filters and displays tags list
-const filters = document.querySelector(".filters");
-
-filters.addEventListener("click", (event) => {
+// Event delegation
+document.addEventListener("click", (event) => {
     event.preventDefault();
     const initElem = event.target;
+    console.log(event.target);
 
     if (initElem.matches(".filter")) {
         toggleFilter(initElem);
+    } else if (initElem.matches(".filter__item")) {
+        tagModel(initElem).addTag();
+    } else if (initElem.matches(".tag-item")) {
+        tagModel(initElem).removeTag();
     } else {
         return;
     }
@@ -70,8 +86,9 @@ const init = () => {
     const allRecipes = [...recipes];
     displayRecipesCards(allRecipes);
     displayFilters(allRecipes);
-    search(allRecipes);
-    newDataFormat = reformatData([...recipes]);
+    newDataFormat = reformatData(allRecipes);
+    console.log(newDataFormat);
+    search(newDataFormat);
 };
 
 // Init App

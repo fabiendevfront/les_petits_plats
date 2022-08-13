@@ -12,6 +12,7 @@
     font-weight: 700;
     padding: 10px 50px 10px 20px;
     margin-right: 10px;
+    margin-bottom: 15px;
     border-radius: 5px;
 
 
@@ -19,11 +20,11 @@
         background-color: variables.$blue;
     }
 
-    &--equipment {
+    &--appliance {
         background-color: variables.$green;
     }
 
-    &--utensil {
+    &--ustensil {
         background-color: variables.$orange;
     }
 

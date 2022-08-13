@@ -519,15 +519,16 @@ a {
   font-weight: 700;
   padding: 10px 50px 10px 20px;
   margin-right: 10px;
+  margin-bottom: 15px;
   border-radius: 5px;
 }
 .tag-item--ingredient {
   background-color: #3282F7;
 }
-.tag-item--equipment {
+.tag-item--appliance {
   background-color: #68D9A4;
 }
-.tag-item--utensil {
+.tag-item--ustensil {
   background-color: #ED6454;
 }
 .tag-item::after {
