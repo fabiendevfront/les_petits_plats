@@ -36,4 +36,15 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+
+    &__error {
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+        font-weight: 700;
+        color: variables.$white;
+        background-color: variables.$error;
+        padding: 50px 0;
+        opacity: 0.8;
+    }
 }

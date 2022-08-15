@@ -14,10 +14,10 @@ export let newDataFormat = [];
  * Display the cards of the recipes
  * @param {Array.<Object>} - Recipes list
  */
-const displayRecipesCards = async (recipes) => {
+export const displayRecipesCards = async (recipes) => {
     const recipesSection = document.querySelector(".recipes");
     await recipes.forEach((data) => {
-        const recipeCard = recipeModel(data).createRecipeCard();
+        const recipeCard = recipeModel(data.recipe).createRecipeCard();
         recipesSection.appendChild(recipeCard);
     });
 };
@@ -56,7 +56,7 @@ const reformatData = (recipes) => {
             .concat(" ", recipe.appliance)
             .concat(" ", recipe.ustensils.toString())
             .concat(" ", recipe.ingredients.map((element) => element.ingredient).toString());
-        newDataFormat.push({recette: recipe, texte: stringReformat(txt)});
+        newDataFormat.push({recipe: recipe, text: stringReformat(txt)});
     });
     return newDataFormat;
 };
@@ -92,14 +92,13 @@ document.addEventListener("input", (event) => {
 // Initialisation on load page
 const init = () => {
     allRecipes = [...recipes];
-    displayRecipesCards(allRecipes);
-    const allFilters = getAllFilters(allRecipes);
     newDataFormat = reformatData(allRecipes);
+    displayRecipesCards(newDataFormat);
 
+    const allFilters = getAllFilters(allRecipes);
     displayFilters(allFilters.listUniqueIngredients).ingredients();
     displayFilters(allFilters.listUniqueAppliances).appliances();
     displayFilters(allFilters.listUniqueUstensils).ustensils();
-
 };
 
 // Init App

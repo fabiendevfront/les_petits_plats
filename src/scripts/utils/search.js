@@ -1,27 +1,29 @@
 import { stringReformat } from "./tools.js";
+import { displayRecipesCards, newDataFormat } from "../app.js";
 
 // Primary Search
 export const search = (recipesReformated, input) => {
-    console.log(recipesReformated);
-    console.log(input);
-    // const searchInput = document.querySelector(".search__input");
-    // const recipesContainer = document.querySelector(".recipes");
+    let filteredRecipes = [];
+    const research = stringReformat(input.value);
+    const recipesContainer = document.querySelector(".recipes");
 
-    // searchInput.addEventListener("input", (event) => {
-    //     const research = stringReformat(event.target.value);
-    //     console.log(research);
-    //     let filteredRecipies = allRecipes.filter((recipe) => {
-    //         const recipeIngredients = recipe.ingredients.map((element) => element.ingredient).toString();
-    //         return (
-    //             stringReformat(recipe.name).includes(research) ||
-    //             stringReformat(recipeIngredients).includes(research) ||
-    //             stringReformat(recipe.description).includes(research)
-    //         );
-    //     });
-    //     console.log(filteredRecipies);
+    filteredRecipes = recipesReformated.filter((recipe) => {
+        return (
+            recipe.text.includes(research)
+        );
+    });
 
-    //     if (research.length >= 3) {
-    //         console.log("Lancement de la recherche !");
-    //     }
-    // });
+    if (research.length >= 3) {
+        console.log("Lancement de la recherche !");
+
+        if (filteredRecipes.length) {
+            recipesContainer.innerHTML = "";
+            displayRecipesCards(filteredRecipes);
+        } else {
+            recipesContainer.innerHTML = `<div class="recipes__error">Aucune recette ne correspond à votre critère…<br>
+            Vous pouvez chercher « tarte aux pommes », « poisson », etc.</div>`;
+        }
+    } else {
+        displayRecipesCards(newDataFormat);
+    }
 };

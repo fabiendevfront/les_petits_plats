@@ -708,6 +708,16 @@ a {
   align-items: center;
   flex-wrap: wrap;
 }
+.recipes__error {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #dc3545;
+  padding: 50px 0;
+  opacity: 0.8;
+}
 
 /*****************/
 /* FILES EXPORT */
