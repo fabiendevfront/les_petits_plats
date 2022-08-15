@@ -1,6 +1,6 @@
 /**
- * Filters Models
- * @returns {Function} - Get all filters, Create HTML Element
+ * Tag Model
+ * @returns {Function}
  */
 export const tagModel = (target) => {
     const tagsContainer = document.querySelector(".tags__list");
@@ -21,7 +21,7 @@ export const tagModel = (target) => {
      * @returns {HTMLElement}
      */
     const addTag = () => {
-        listTags.push(target.innerHTML, category);
+        listTags.push({tag: target.innerHTML, cat: category});
         const tagTemplate = createTag();
         tagsContainer.appendChild(tagTemplate);
 

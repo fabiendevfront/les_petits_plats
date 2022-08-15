@@ -1,4 +1,11 @@
-// Toggle filters for display tags list and activate input
+import { stringReformat } from "./tools.js";
+import { allRecipes } from "../app.js";
+import { filterModel } from "../models/FilterModel.js";
+
+/**
+ * Toggle filters for display tags list and activate input
+ * @param {HTMLElement} - Target filter
+ */
 export const toggleFilter = (filter) => {
     const allFilter = document.querySelectorAll(".filter");
     let listElem = "";
@@ -32,6 +39,70 @@ export const toggleFilter = (filter) => {
         filter.children[0].placeholder = placeholder;
     } else {
         listElem.style.display = "none";
+        filter.children[0].value = "";
         filter.children[0].placeholder = filter.id;
     }
 };
+
+/**
+ * Get all filters
+ * @param {Object} - Recipes list
+ * @returns {Object} Array of filters
+ */
+export const getAllFilters  = (recipes) => {
+    let ingredients = [];
+    let appliances = [];
+    let ustensils = [];
+
+    recipes.forEach((recipe) => {
+        recipe.ingredients.forEach((element) => {
+            ingredients.push(element.ingredient);
+        });
+
+        appliances.push(recipe.appliance);
+
+        recipe.ustensils.forEach((element) => {
+            ustensils.push(element);
+        });
+    });
+
+    const listUniqueIngredients = [...new Set(ingredients)].sort();
+    const listUniqueAppliances = [...new Set(appliances)].sort();
+    const listUniqueUstensils = [...new Set(ustensils)].sort();
+
+    return {listUniqueIngredients, listUniqueAppliances, listUniqueUstensils};
+};
+
+/**
+ * Search in list of tags
+ * @param {HTMLElement} - Target input
+ */
+export const searchInTag = (input) => {
+    const allFilters = getAllFilters(allRecipes);
+    const listTags = input.nextElementSibling;
+    listTags.innerHTML = "";
+    const research = stringReformat(input.value);
+    let category = "";
+    let filteredTags = [];
+
+    if (input.id === "ingredients") {
+        category = "ingredient";
+        filteredTags = allFilters.listUniqueIngredients.filter((ingredient) => {
+            return stringReformat(ingredient).includes(research);
+        });
+    } else if (input.id === "appliances") {
+        category = "appliance";
+        filteredTags = allFilters.listUniqueAppliances.filter((appliance) => {
+            return stringReformat(appliance).includes(research);
+        });
+    } else if (input.id === "ustensils") {
+        category = "ustensil";
+        filteredTags = allFilters.listUniqueUstensils.filter((ustensil) => {
+            return stringReformat(ustensil).includes(research);
+        });
+    }
+
+    filterModel(filteredTags, category).createFiltersList();
+};
+
+

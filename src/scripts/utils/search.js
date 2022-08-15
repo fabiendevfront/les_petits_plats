@@ -3,7 +3,7 @@ import { stringReformat } from "./tools.js";
 // Primary Search
 export const search = (allRecipes) => {
     console.log(allRecipes);
-    const searchInput = document.querySelector(".search__input");
+    // const searchInput = document.querySelector(".search__input");
     // const recipesContainer = document.querySelector(".recipes");
 
     // searchInput.addEventListener("input", (event) => {
