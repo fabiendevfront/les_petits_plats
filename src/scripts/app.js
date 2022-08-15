@@ -1,11 +1,10 @@
 import { recipes } from "../data/recipes.js";
-import { skeletonModel } from "./models/SkeletonModel.js";
 import { recipeModel } from "./models/RecipeModel.js";
 import { filterModel } from "./models/FilterModel.js";
 import { tagModel } from "./models/TagModel.js";
 import { getAllFilters, toggleFilter, searchInTag } from "./utils/filter.js";
 import { search } from "./utils/search.js";
-import { stringReformat } from "./utils/tools.js";
+import { stringReformat, displaySkeleton, removeSkeleton, sleep  } from "./utils/tools.js";
 
 // Stores recipes data during initialization
 export let allRecipes = [];
@@ -17,8 +16,8 @@ export let newDataFormat = [];
  */
 export const displayRecipesCards = async (recipes) => {
     const recipesSection = document.querySelector(".recipes");
+    recipesSection.innerHTML = "";
     await displaySkeleton(recipes, recipesSection);
-    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
     await sleep(800);
     await removeSkeleton();
     await recipes.forEach((data) => {
@@ -47,25 +46,6 @@ export const displayFilters = (listItems) => {
     };
 
     return { ingredients, appliances, ustensils };
-};
-
-// Display the skeleton loader
-const displaySkeleton = async (recipes, recipesSection) => {
-    recipes.forEach((data) => {
-        const skeletonCard = skeletonModel(data.recipe).createSkeletonCard();
-        recipesSection.appendChild(skeletonCard);
-    });
-};
-
-// Remove the skeleton cards
-const removeSkeleton = async () => {
-    // Recover the skeleton cards
-    const listSkeleton = document.querySelectorAll(".skeleton-card");
-    // Browse through the skeleton cards
-    listSkeleton.forEach((skeleton) => {
-        // Deletes the skeleton card that has been traveled
-        skeleton.remove();
-    });
 };
 
 /**
