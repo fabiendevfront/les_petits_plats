@@ -10,7 +10,10 @@ import { stringReformat } from "./utils/tools.js";
 export let allRecipes = [];
 export let newDataFormat = [];
 
-// Display the cards of the recipes
+/**
+ * Display the cards of the recipes
+ * @param {Array.<Object>} - Recipes list
+ */
 const displayRecipesCards = async (recipes) => {
     const recipesSection = document.querySelector(".recipes");
     await recipes.forEach((data) => {
@@ -19,26 +22,33 @@ const displayRecipesCards = async (recipes) => {
     });
 };
 
-// Display the filters of the tags
-const displayFilters = (allRecipes) => {
-    const allFilters = getAllFilters(allRecipes);
+/**
+ * Display the filters of the tags
+ * @param {Array} - Items list
+ * @returns {Function}
+ */
+export const displayFilters = (listItems) => {
 
-    const ingredientsSection = document.querySelector(".filter--ingredients");
-    const ingredients = allFilters.listUniqueIngredients;
-    const ingredientsDOM = filterModel(ingredients, "ingredient").createFiltersList();
-    ingredientsSection.appendChild(ingredientsDOM);
+    const ingredients = () => {
+        filterModel(listItems, "ingredient").createFiltersList();
+    };
 
-    const appliancesSection = document.querySelector(".filter--appliances");
-    const appliances = allFilters.listUniqueAppliances;
-    const appliancesDOM = filterModel(appliances, "appliance").createFiltersList();
-    appliancesSection.appendChild(appliancesDOM);
+    const appliances = () => {
+        filterModel(listItems, "appliance").createFiltersList();
+    };
 
-    const ustensilsSection = document.querySelector(".filter--ustensils");
-    const ustensils = allFilters.listUniqueUstensils;
-    const ustensilsDOM = filterModel(ustensils, "ustensil").createFiltersList();
-    ustensilsSection.appendChild(ustensilsDOM);
+    const ustensils = () => {
+        filterModel(listItems, "ustensil").createFiltersList();
+    };
+
+    return { ingredients, appliances, ustensils };
 };
 
+/**
+ * Reformat recipes data for research
+ * @param {Array.<Object>} - Recipes list
+ * @returns {Array.<Object>} Reformated recipes
+ */
 const reformatData = (recipes) => {
     let newDataFormat = [];
     recipes.forEach(recipe => {
@@ -73,7 +83,7 @@ document.addEventListener("input", (event) => {
     const initElem = event.target;
 
     if (initElem.matches(".search__input")) {
-        search(newDataFormat);
+        search(newDataFormat, initElem);
     } else if (initElem.matches(".filter__input")) {
         searchInTag(initElem);
     }
@@ -83,8 +93,13 @@ document.addEventListener("input", (event) => {
 const init = () => {
     allRecipes = [...recipes];
     displayRecipesCards(allRecipes);
-    displayFilters(allRecipes);
+    const allFilters = getAllFilters(allRecipes);
     newDataFormat = reformatData(allRecipes);
+
+    displayFilters(allFilters.listUniqueIngredients).ingredients();
+    displayFilters(allFilters.listUniqueAppliances).appliances();
+    displayFilters(allFilters.listUniqueUstensils).ustensils();
+
 };
 
 // Init App

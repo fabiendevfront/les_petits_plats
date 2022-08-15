@@ -1,8 +1,9 @@
 import { stringReformat } from "./tools.js";
 
 // Primary Search
-export const search = (allRecipes) => {
-    console.log(allRecipes);
+export const search = (recipesReformated, input) => {
+    console.log(recipesReformated);
+    console.log(input);
     // const searchInput = document.querySelector(".search__input");
     // const recipesContainer = document.querySelector(".recipes");
 

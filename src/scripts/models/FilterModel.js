@@ -1,6 +1,6 @@
 /**
  * Filter Model
- * @param {Object} - Filter list
+ * @param {Array} - Filter list
  * @param {String} - Filter category
  * @returns {Function}
  */

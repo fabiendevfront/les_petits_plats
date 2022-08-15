@@ -1,6 +1,6 @@
 import { stringReformat } from "./tools.js";
 import { allRecipes } from "../app.js";
-import { filterModel } from "../models/FilterModel.js";
+import { displayFilters } from "../app.js";
 
 /**
  * Toggle filters for display tags list and activate input
@@ -46,8 +46,8 @@ export const toggleFilter = (filter) => {
 
 /**
  * Get all filters
- * @param {Object} - Recipes list
- * @returns {Object} Array of filters
+ * @param {Array.<Object>} - Recipes list
+ * @returns {Array} Array of filters
  */
 export const getAllFilters  = (recipes) => {
     let ingredients = [];
@@ -78,31 +78,28 @@ export const getAllFilters  = (recipes) => {
  * @param {HTMLElement} - Target input
  */
 export const searchInTag = (input) => {
-    const allFilters = getAllFilters(allRecipes);
     const listTags = input.nextElementSibling;
     listTags.innerHTML = "";
+    const allFilters = getAllFilters(allRecipes);
     const research = stringReformat(input.value);
-    let category = "";
     let filteredTags = [];
 
     if (input.id === "ingredients") {
-        category = "ingredient";
         filteredTags = allFilters.listUniqueIngredients.filter((ingredient) => {
             return stringReformat(ingredient).includes(research);
         });
+        displayFilters(filteredTags).ingredients();
     } else if (input.id === "appliances") {
-        category = "appliance";
         filteredTags = allFilters.listUniqueAppliances.filter((appliance) => {
             return stringReformat(appliance).includes(research);
         });
+        displayFilters(filteredTags).appliances();
     } else if (input.id === "ustensils") {
-        category = "ustensil";
         filteredTags = allFilters.listUniqueUstensils.filter((ustensil) => {
             return stringReformat(ustensil).includes(research);
         });
+        displayFilters(filteredTags).ustensils();
     }
-
-    filterModel(filteredTags, category).createFiltersList();
 };
 
 
