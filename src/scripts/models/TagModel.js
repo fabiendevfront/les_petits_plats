@@ -1,11 +1,13 @@
+import { listTags } from "../app.js";
+
 /**
  * Tag Model
  * @returns {Function}
  */
 export const tagModel = (target) => {
     const tagsContainer = document.querySelector(".tags__list");
-    let listTags = [];
     let category = "";
+    let arrayTags = listTags;
 
     if(target.matches(".filter__item--ingredient")) {
         category = "ingredient";
@@ -21,7 +23,7 @@ export const tagModel = (target) => {
      * @returns {HTMLElement}
      */
     const addTag = () => {
-        listTags.push({tag: target.innerHTML, cat: category});
+        arrayTags.push(target.innerHTML);
         const tagTemplate = createTag();
         tagsContainer.appendChild(tagTemplate);
 
@@ -34,7 +36,10 @@ export const tagModel = (target) => {
      * @returns {HTMLElement}
      */
     const removeTag = () => {
-        listTags = listTags.filter(item => !(item.value === target.innertHTML));
+        const indexTarget = arrayTags.indexOf(target.innerHTML);
+        if (indexTarget !== -1) {
+            arrayTags.splice(indexTarget, 1);
+        }
         target.remove();
     };
 
@@ -52,5 +57,10 @@ export const tagModel = (target) => {
         return tagItem;
     };
 
-    return { addTag, createTag, removeTag };
+    return {
+        addTag, createTag, removeTag,
+        get arrayTags() {
+            return arrayTags;
+        },
+    };
 };

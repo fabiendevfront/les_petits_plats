@@ -20,7 +20,6 @@ export const search = (recipesReformated, input) => {
         if (filteredRecipes.length) {
             displayRecipesCards(filteredRecipes);
             const filters = getAllFilters(filteredRecipes);
-            console.log(filters);
             displayFilters(filters.listUniqueIngredients).ingredients();
             displayFilters(filters.listUniqueAppliances).appliances();
             displayFilters(filters.listUniqueUstensils).ustensils();

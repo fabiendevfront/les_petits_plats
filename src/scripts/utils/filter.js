@@ -77,7 +77,7 @@ export const getAllFilters  = (recipes) => {
  * Search in list of tags
  * @param {HTMLElement} - Target input
  */
-export const searchInTag = (input) => {
+export const searchInFilter = (input) => {
     const listTags = input.nextElementSibling;
     listTags.innerHTML = "";
     const allFilters = getAllFilters(newDataFormat);

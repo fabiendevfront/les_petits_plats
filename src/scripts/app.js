@@ -2,13 +2,15 @@ import { recipes } from "../data/recipes.js";
 import { recipeModel } from "./models/RecipeModel.js";
 import { filterModel } from "./models/FilterModel.js";
 import { tagModel } from "./models/TagModel.js";
-import { getAllFilters, toggleFilter, searchInTag } from "./utils/filter.js";
+import { getAllFilters, toggleFilter, searchInFilter } from "./utils/filter.js";
 import { search } from "./utils/search.js";
 import { stringReformat, displaySkeleton, removeSkeleton, sleep  } from "./utils/tools.js";
+import { searchByTag } from "./utils/tag.js";
 
 // Stores recipes data during initialization
 export let allRecipes = [];
 export let newDataFormat = [];
+export let listTags = [];
 
 /**
  * Display the cards of the recipes
@@ -89,7 +91,7 @@ document.addEventListener("input", (event) => {
     if (initElem.matches(".search__input")) {
         search(newDataFormat, initElem);
     } else if (initElem.matches(".filter__input")) {
-        searchInTag(initElem);
+        searchInFilter(initElem);
     }
 });
 
@@ -103,6 +105,8 @@ const init = () => {
     displayFilters(allFilters.listUniqueIngredients).ingredients();
     displayFilters(allFilters.listUniqueAppliances).appliances();
     displayFilters(allFilters.listUniqueUstensils).ustensils();
+
+    searchByTag();
 };
 
 // Init App
