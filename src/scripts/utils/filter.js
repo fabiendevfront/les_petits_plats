@@ -1,5 +1,5 @@
 import { stringReformat } from "./tools.js";
-import { allRecipes } from "../app.js";
+import { newDataFormat } from "../app.js";
 import { displayFilters } from "../app.js";
 
 /**
@@ -54,14 +54,14 @@ export const getAllFilters  = (recipes) => {
     let appliances = [];
     let ustensils = [];
 
-    recipes.forEach((recipe) => {
-        recipe.ingredients.forEach((element) => {
+    recipes.forEach((item) => {
+        item.recipe.ingredients.forEach((element) => {
             ingredients.push(element.ingredient);
         });
 
-        appliances.push(recipe.appliance);
+        appliances.push(item.recipe.appliance);
 
-        recipe.ustensils.forEach((element) => {
+        item.recipe.ustensils.forEach((element) => {
             ustensils.push(element);
         });
     });
@@ -80,7 +80,7 @@ export const getAllFilters  = (recipes) => {
 export const searchInTag = (input) => {
     const listTags = input.nextElementSibling;
     listTags.innerHTML = "";
-    const allFilters = getAllFilters(allRecipes);
+    const allFilters = getAllFilters(newDataFormat);
     const research = stringReformat(input.value);
     let filteredTags = [];
 

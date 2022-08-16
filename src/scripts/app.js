@@ -99,7 +99,7 @@ const init = () => {
     newDataFormat = reformatData(allRecipes);
     displayRecipesCards(newDataFormat);
 
-    const allFilters = getAllFilters(allRecipes);
+    const allFilters = getAllFilters(newDataFormat);
     displayFilters(allFilters.listUniqueIngredients).ingredients();
     displayFilters(allFilters.listUniqueAppliances).appliances();
     displayFilters(allFilters.listUniqueUstensils).ustensils();
