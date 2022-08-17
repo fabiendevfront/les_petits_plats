@@ -2,7 +2,7 @@ import { recipes } from "../data/recipes.js";
 import { recipeModel } from "./models/RecipeModel.js";
 import { filterModel } from "./models/FilterModel.js";
 import { tagModel } from "./models/TagModel.js";
-import { getAllFilters, toggleFilter, searchInFilter } from "./utils/filter.js";
+import { getAllFilters, toggleFilter, searchInFilter, filtersClose } from "./utils/filter.js";
 import { search } from "./utils/search.js";
 import { stringReformat, displaySkeleton, removeSkeleton, sleep  } from "./utils/tools.js";
 import { searchByTag } from "./utils/tag.js";
@@ -71,14 +71,19 @@ const reformatData = (recipes) => {
 document.addEventListener("click", (event) => {
     event.preventDefault();
     const initElem = event.target;
+    console.log(initElem);
 
     if (initElem.matches(".filter")) {
         toggleFilter(initElem);
     } else if (initElem.matches(".filter__item")) {
         tagModel(initElem).addTag();
+        filtersClose();
     } else if (initElem.matches(".tag-item")) {
         tagModel(initElem).removeTag();
-    } else {
+    } else if (!initElem.matches(".filter") && !initElem.matches(".filter__input")) {
+        filtersClose();
+    }
+    else {
         return;
     }
 });

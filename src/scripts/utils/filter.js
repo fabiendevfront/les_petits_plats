@@ -41,6 +41,10 @@ export const toggleFilter = (filter) => {
         listElem.style.display = "none";
         filter.children[0].value = "";
         filter.children[0].placeholder = filter.id;
+        const allFilters = getAllFilters(newDataFormat);
+        displayFilters(allFilters.listUniqueIngredients).ingredients();
+        displayFilters(allFilters.listUniqueAppliances).appliances();
+        displayFilters(allFilters.listUniqueUstensils).ustensils();
     }
 };
 
@@ -100,6 +104,15 @@ export const searchInFilter = (input) => {
         });
         displayFilters(filteredTags).ustensils();
     }
+};
+
+export const filtersClose = () => {
+    const allFilter = document.querySelectorAll(".filter");
+    allFilter.forEach((element) => {
+        if (element.matches(".active")) {
+            toggleFilter(element);
+        }
+    });
 };
 
 
