@@ -3,7 +3,7 @@
  * @param {Object} - recipe data
  * @returns {Function} - Create HTML Element
  */
-export const recipeModel = (data) => {
+export const recipeTemplate = (data) => {
     const { id, name, servings, ingredients, time, description, appliance, ustensils } = data;
 
     // Path of the recipe cover

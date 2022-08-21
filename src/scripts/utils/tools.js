@@ -1,6 +1,39 @@
-import { skeletonModel } from "../models/SkeletonModel.js";
+// OLD VERSION
+// export const reformatData = (recipes) => {
+//     let newDataFormat = [];
+//     recipes.forEach(recipe => {
+//         const txt = recipe.name.concat(" ", recipe.description)
+//             .concat(" ", recipe.appliance)
+//             .concat(" ", recipe.ustensils.toString())
+//             .concat(" ", recipe.ingredients.map((element) => element.ingredient).toString());
+//         newDataFormat.push({recipe: recipe, text: stringReformat(txt)});
+//     });
+//     return newDataFormat;
+// };
 
-// Reformats strings to lower case and removes accents
+/**
+ * Reformat recipes data for research
+ * @param {Array.<Object>} - Recipes list
+ * @returns {Array.<Object>} - Reformated recipes
+ */
+export const reformatRecipes = (recipes) => {
+    let newDataFormat = [];
+    recipes.forEach(recipe => {
+        const searchBar = recipe.name.concat(" ", recipe.description)
+            .concat(" ", recipe.ingredients.map((element) => element.ingredient).toString());
+        const searchTags = recipe.ingredients.map((element) => element.ingredient).toString()
+            .concat(" ", recipe.appliance)
+            .concat(" ", recipe.ustensils.toString());
+        newDataFormat.push({recipe: recipe, searchBar: stringReformat(searchBar), searchTags: stringReformat(searchTags)});
+    });
+    return newDataFormat;
+};
+
+/**
+ * Reformats strings to lower case and removes accents
+ * @param {String} - String
+ * @returns {String} - Reformated string
+ */
 export const stringReformat = (string) => {
     let stringReformated = string.toLowerCase();
     stringReformated = stringReformated.replace(/[éèêë]/g, "e");
@@ -8,25 +41,9 @@ export const stringReformat = (string) => {
     stringReformated = stringReformated.replace(/[ùû]/g, "u");
     stringReformated = stringReformated.replace(/[îï]/g, "i");
     stringReformated = stringReformated.replace(/[ç]/g, "c");
+    stringReformated = stringReformated.replace(/[,.!?]/g, " ");
     return stringReformated;
 };
 
 // Create a delay to simulate a loading
 export const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-
-// Display the skeleton loader
-export const displaySkeleton = async (recipes, recipesSection) => {
-    recipes.forEach((data) => {
-        const skeletonCard = skeletonModel(data.recipe).createSkeletonCard();
-        recipesSection.appendChild(skeletonCard);
-    });
-};
-
-// Remove the skeleton cards
-export const removeSkeleton = async () => {
-    const listSkeleton = document.querySelectorAll(".skeleton-card");
-    listSkeleton.forEach((skeleton) => {
-        skeleton.remove();
-    });
-};

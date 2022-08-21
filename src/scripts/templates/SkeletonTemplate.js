@@ -3,7 +3,7 @@
  * @param {Object} - recipe data
  * @returns {Function} - Create HTML Element
  */
-export const skeletonModel = () => {
+export const skeletonTemplate = () => {
 
     /**
      * Recipe card template

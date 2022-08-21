@@ -4,7 +4,7 @@
  * @param {String} - Filter category
  * @returns {Function}
  */
-export const filterModel = (data, category) => {
+export const filterTemplate = (data, category) => {
     /**
      * filters template
      * @returns {HTMLElement}
