@@ -1,6 +1,5 @@
-import { reformatedRecipes } from "../app.js";
 import { tagTemplate } from "../templates/TagTemplate.js";
-import { searchByTag } from "./search.js";
+import { initSearch } from "../app.js";
 
 export let arrayTags = [];
 
@@ -14,7 +13,7 @@ export const addTag = (target, container) => {
     arrayTags.push(target.innerHTML);
     const tagDOM = tagTemplate(target).createTag();
     container.appendChild(tagDOM);
-    searchByTag(arrayTags, reformatedRecipes);
+    initSearch.searchByTag(arrayTags);
 
     return tagDOM;
 };
@@ -28,6 +27,6 @@ export const removeTag = (target) => {
     if (indexTarget !== -1) {
         arrayTags.splice(indexTarget, 1);
     }
-    searchByTag(arrayTags, reformatedRecipes);
+    initSearch.searchByTag(arrayTags);
     target.remove();
 };

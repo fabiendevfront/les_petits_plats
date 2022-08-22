@@ -31,7 +31,7 @@ export const toggleFilter = (filter, filterInfos, allFilters) => {
 /**
  * Get all filters items
  * @param {Array.<Object>} - Recipes list
- * @returns {Array} Array of filters items
+ * @returns {Array.<Object>} Object array of filters items
  */
 export const getAllFilters  = (recipes) => {
     let ingredients = [];

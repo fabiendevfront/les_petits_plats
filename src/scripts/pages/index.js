@@ -1,16 +1,14 @@
-import { reformatedRecipes } from "../app.js";
+import { initSearch } from "../app.js";
 import { recipeTemplate } from "../templates/RecipeTemplate.js";
 import { filterTemplate } from "../templates/FilterTemplate.js";
 import { displaySkeleton, removeSkeleton } from "../controllers/skeleton.js";
 import { toggleFilter, filtersClose } from "../controllers/filter.js";
 import { addTag, removeTag } from "../controllers/tag.js";
-import { search, searchInFilter } from "../controllers/search.js";
-import { sleep } from "../utils/tools.js";
+import { stringReformat, sleep } from "../utils/tools.js";
 
 /*
 * DOM Selection
 */
-
 const recipesSection = document.querySelector(".recipes");
 const tagsContainer = document.querySelector(".tags__list");
 const allFilters = document.querySelectorAll(".filter");
@@ -20,8 +18,9 @@ const allFilters = document.querySelectorAll(".filter");
  * @param {Array.<Object>} - Reformated recipes list
  */
 export const displayRecipesCards = async (recipes) => {
+    recipesSection.innerHTML = "";
+
     if (recipes.length) {
-        recipesSection.innerHTML = "";
         await displaySkeleton(recipes, recipesSection);
         await sleep(800);
         await removeSkeleton();
@@ -41,7 +40,6 @@ export const displayRecipesCards = async (recipes) => {
  * @returns {Function}
  */
 export const displayFilters = (listItems) => {
-
     const ingredients = () => {
         filterTemplate(listItems, "ingredient").createFiltersList();
     };
@@ -110,9 +108,13 @@ document.addEventListener("input", (event) => {
     const initElem = event.target;
 
     if (initElem.matches(".search__input")) {
-        search(reformatedRecipes, initElem);
+        const research = stringReformat(initElem.value);
+        initSearch.searchBar(research);
     } else if (initElem.matches(".filter__input")) {
-        searchInFilter(initElem);
+        const research = stringReformat(initElem.value);
+        const currentListTags = initElem.nextElementSibling;
+        const category = initElem.id;
+        initSearch.searchInFilter(research, currentListTags, category);
     } else {
         return;
     }
