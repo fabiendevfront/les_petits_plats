@@ -14,7 +14,6 @@ export const addTag = (target, container) => {
     const tagDOM = tagTemplate(target).createTag();
     container.appendChild(tagDOM);
     initSearch.searchByTag(arrayTags);
-
     return tagDOM;
 };
 

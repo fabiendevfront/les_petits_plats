@@ -25,9 +25,9 @@ export const searchEngine = (reformatedRecipes, allFilters) => {
     };
 
     const searchByTag = (arrayTags) => {
+        const joinTags = arrayTags.join(" ");
+        console.log(joinTags);
         if (arrayTags.length) {
-            const joinTags = arrayTags.join(" ");
-
             if (filteredRecipes.length) {
                 filteredRecipes = filteredRecipes.filter((recipe) => {
                     return (
@@ -53,13 +53,15 @@ export const searchEngine = (reformatedRecipes, allFilters) => {
      * @param {HTMLElement} - Target input
      */
     const searchInFilter = (research, currentListTags, category) => {
+        console.log(filteredFilters);
         currentListTags.innerHTML = "";
         let tempFilters = [];
         let filteredTags = [];
-        if (filteredFilters.length) {
-            tempFilters = filteredFilters;
-        } else {
+
+        if (filteredFilters.length === 0) {
             tempFilters = originalFilters;
+        } else {
+            tempFilters = filteredFilters;
         }
 
         if (category === "ingredients") {
