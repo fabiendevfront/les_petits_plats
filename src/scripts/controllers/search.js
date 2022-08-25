@@ -84,7 +84,6 @@ export const searchEngine = (reformatedRecipes, allFilters) => {
      * @param {Array.<Object>} - Filters list
      */
     const updateDOM = (recipes, filters) => {
-        console.log(filters);
         displayRecipesCards(recipes);
         displayFilters(filters.listUniqueIngredients).ingredients();
         displayFilters(filters.listUniqueAppliances).appliances();
