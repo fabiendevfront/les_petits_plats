@@ -6,7 +6,7 @@ import { toggleFilter, filtersClose } from "../controllers/filter.js";
 import { addTag, removeTag } from "../controllers/tag.js";
 import { stringReformat } from "../utils/tools.js";
 
-export let researchForm = "";
+export let researchValue = "";
 
 /*
 * DOM Selection
@@ -75,7 +75,7 @@ export const getFiltersContainerInfos = (filter) => {
         placeholder = "Rechercher un ustensile";
     }
 
-    return { container, placeholder};
+    return { container, placeholder };
 };
 
 /*
@@ -91,7 +91,17 @@ document.addEventListener("click", (event) => {
         const filterInfos = getFiltersContainerInfos(initElem);
         toggleFilter(initElem, filterInfos, allFilters);
     } else if (initElem.matches(".filter__item")) {
-        addTag(initElem, tagsContainer);
+        const tag = {};
+        tag.value = stringReformat(initElem.innerHTML);
+        tag.category = "";
+        if (initElem.matches(".filter__item--ingredient")) {
+            tag.category = "ingredient";
+        } else if (initElem.matches(".filter__item--appliance")) {
+            tag.category = "appliance";
+        } else if (initElem.matches(".filter__item--ustensil")) {
+            tag.category = "ustensil";
+        }
+        addTag(tag, tagsContainer);
         filtersClose(allFilters);
     } else if (initElem.matches(".tag-item")) {
         removeTag(initElem);
@@ -108,9 +118,8 @@ document.addEventListener("input", (event) => {
     const initElem = event.target;
 
     if (initElem.matches(".search__input")) {
-        researchForm = stringReformat(initElem.value);
-        // initSearch.searchBar(researchForm);
-        initSearch.search(researchForm);
+        researchValue = stringReformat(initElem.value);
+        initSearch.search(researchValue);
     } else if (initElem.matches(".filter__input")) {
         const researchFilter = stringReformat(initElem.value);
         const currentListTags = initElem.nextElementSibling;

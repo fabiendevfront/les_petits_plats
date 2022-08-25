@@ -3,6 +3,8 @@ import { getFiltersContainerInfos } from "../pages/index.js";
 /**
  * Toggle filters for display tags list and activate input
  * @param {HTMLElement} - Target filter
+ * @param {Object} - Target filter container and placeholder
+ * @param {Array.<Object>} - All filters
  */
 export const toggleFilter = (filter, filterInfos, allFilters) => {
 

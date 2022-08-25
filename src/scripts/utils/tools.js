@@ -32,5 +32,8 @@ export const stringReformat = (string) => {
     return stringReformated;
 };
 
-// Create a delay to simulate a loading
+/**
+ * Create a delay to simulate a loading
+ * @param {Number} - Time
+ */
 export const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));

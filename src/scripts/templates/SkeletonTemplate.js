@@ -1,12 +1,10 @@
 /**
- * Creates a photographer card or profil.
- * @param {Object} - recipe data
+ * Skeleton template
  * @returns {Function} - Create HTML Element
  */
 export const skeletonTemplate = () => {
-
     /**
-     * Recipe card template
+     * Create skeleton template
      * @returns {HTMLElement}
      */
     const createSkeletonCard = () => {

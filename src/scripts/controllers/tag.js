@@ -1,33 +1,35 @@
 import { tagTemplate } from "../templates/TagTemplate.js";
 import { initSearch } from "../app.js";
+import { stringReformat } from "../utils/tools.js";
 
 export let arrayTags = [];
 
 /**
  * Add tag in array and display it in DOM
- * @param {HTMLElement} - Target
+ * @param {Object} - Tag
  * @param {HTMLElement} - Container
- * @returns {HTMLElement}
 */
-export const addTag = (target, container) => {
-    arrayTags.push(target.innerHTML);
-    const tagDOM = tagTemplate(target).createTag();
-    container.appendChild(tagDOM);
-    // initSearch.searchByTag(arrayTags);
+export const addTag = (tag, container) => {
+    container.innerHTML = "";
+    arrayTags.push(tag);
+    arrayTags = [...new Set(arrayTags)];
+    arrayTags.forEach((item) => {
+        let tagDOM = tagTemplate(item.value, item.category).createTag();
+        container.appendChild(tagDOM);
+    });
     initSearch.search();
-    return tagDOM;
 };
 
 /**
  * Remove tag in array and remove it in DOM
- * @param {HTMLElement} - Target
+ * @param {HTMLElement} - Tag target
  */
 export const removeTag = (target) => {
-    const indexTarget = arrayTags.indexOf(target.innerHTML);
-    if (indexTarget !== -1) {
-        arrayTags.splice(indexTarget, 1);
+    const tag = stringReformat(target.innerHTML);
+    const index = arrayTags.findIndex(i => i.value === tag);
+    if (index !== -1) {
+        arrayTags.splice(index, 1);
     }
-    // initSearch.searchByTag(arrayTags);
     initSearch.search();
     target.remove();
 };

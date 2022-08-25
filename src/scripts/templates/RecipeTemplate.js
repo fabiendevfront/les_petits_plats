@@ -1,17 +1,17 @@
 /**
- * Creates a photographer card or profil.
- * @param {Object} - recipe data
+ * Recipe template
+ * @param {Object} - Recipe data
  * @returns {Function} - Create HTML Element
  */
 export const recipeTemplate = (data) => {
-    const { id, name, servings, ingredients, time, description, appliance, ustensils } = data;
+    const { name, ingredients, time, description } = data;
 
     // Path of the recipe cover
     const picture = "dist/assets/images/recipe.jpg";
     const clockIcon = "dist/assets/icons/time.svg";
 
     /**
-     * Recipe card template
+     * Create recipe card template
      * @returns {HTMLElement}
      */
     const createRecipeCard = () => {
@@ -42,6 +42,10 @@ export const recipeTemplate = (data) => {
         return recipeCard;
     };
 
+    /**
+     * Create ingredients list
+     * @returns {HTMLElement}
+     */
     const createIngredients = () => {
         const ingredientList = document.createElement("ul");
         ingredientList.classList.add("recipe-card__list");
@@ -53,31 +57,5 @@ export const recipeTemplate = (data) => {
         return ingredientList;
     };
 
-    return {
-        createRecipeCard,
-
-        /*
-        * Getters
-        */
-        get id() {
-            return id;
-        },
-
-        get servings() {
-            return servings;
-        },
-
-        get ingredients() {
-            return ingredients;
-        },
-
-        get appliance() {
-            return appliance;
-        },
-
-        get ustensils() {
-            return ustensils;
-        }
-
-    };
+    return { createRecipeCard };
 };

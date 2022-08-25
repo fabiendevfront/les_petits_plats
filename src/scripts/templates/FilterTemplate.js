@@ -1,12 +1,12 @@
 /**
- * Filter Model
+ * Filter Template
  * @param {Array} - Filter list
  * @param {String} - Filter category
  * @returns {Function}
  */
 export const filterTemplate = (data, category) => {
     /**
-     * filters template
+     * Create filter template
      * @returns {HTMLElement}
      */
     const createFiltersList = () => {

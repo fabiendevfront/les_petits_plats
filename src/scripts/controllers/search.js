@@ -1,61 +1,28 @@
+import { displayRecipesCards, displayFilters, researchValue } from "../pages/index.js";
 import { getAllFilters } from "./filter.js";
 import { stringReformat } from "../utils/tools.js";
-import { displayRecipesCards, displayFilters, researchForm } from "../pages/index.js";
 import { arrayTags } from "./tag.js";
 
-
+/**
+* Search Engine
+* @param {Array.<Object>} - Reformated recipes data
+* @param {Array.<Object>} - All filters
+* @return {Function}
+*/
 export const searchEngine = (reformatedRecipes, allFilters) => {
     const originalRecipes = reformatedRecipes;
     const originalFilters = allFilters;
-    let filteredFilters = [];
     let results = [];
+    let filteredFilters = [];
 
-
-    // // Primary Search
-    // const searchBar = (research) => {
-    //     if (research.length >= 3) {
-    //         filteredRecipes = originalRecipes.filter((recipe) => {
-    //             return (
-    //                 recipe.searchBar.includes(research)
-    //             );
-    //         });
-    //         filteredFilters = getAllFilters(filteredRecipes);
-    //         updateDOM(filteredRecipes, filteredFilters);
-    //     } else {
-    //         updateDOM(originalRecipes, originalFilters);
-    //     }
-    // };
-
-    // const searchByTag = (arrayTags) => {
-    //     const joinTags = arrayTags.join(" ");
-    //     let tempRecipes = [];
-    //     let tempFilters = [];
-    //     if (arrayTags.length) {
-    //         if (filteredRecipes.length) {
-    //             tempRecipes = filteredRecipes.filter((recipe) => {
-    //                 return (
-    //                     recipe.searchTags.includes(stringReformat(joinTags))
-    //                 );
-    //             });
-    //         } else {
-    //             tempRecipes = originalRecipes.filter((recipe) => {
-    //                 return (
-    //                     recipe.searchTags.includes(stringReformat(joinTags))
-    //                 );
-    //             });
-    //         }
-    //         tempFilters = getAllFilters(tempRecipes);
-    //         updateDOM(tempRecipes, tempFilters);
-    //     } else {
-    //         updateDOM(originalRecipes, originalFilters);
-    //     }
-    // };
-
+    /*
+    * Search function by form/tag and update DOM
+    */
     const search = () => {
-        if (researchForm.length >= 3) {
+        if (researchValue.length >= 3) {
             results = originalRecipes.filter((recipe) => {
                 return (
-                    recipe.searchBar.includes(researchForm)
+                    recipe.searchBar.includes(researchValue)
                 );
             });
         } else {
@@ -66,7 +33,7 @@ export const searchEngine = (reformatedRecipes, allFilters) => {
             arrayTags.forEach((tag) => {
                 results = results.filter((recipe) => {
                     return (
-                        recipe.searchTags.includes(stringReformat(tag))
+                        recipe.searchTags.includes(stringReformat(tag.value))
                     );
                 });
             });
@@ -77,20 +44,19 @@ export const searchEngine = (reformatedRecipes, allFilters) => {
     };
 
     /**
-     * Search in list of tags
-     * @param {HTMLElement} - Target input
+     * Search in filters for tags
+     * @param {String} - Target input value
+     * @param {HTMLElement} - Current list of tags
+     * @param {String} - Category of filter
      */
     const searchInFilter = (research, currentListTags, category) => {
-        console.log(filteredFilters);
         currentListTags.innerHTML = "";
         let tempFilters = [];
         let filteredTags = [];
 
         if (filteredFilters.length === 0) {
-            console.log("Pas de results précédants");
             tempFilters = originalFilters;
         } else {
-            console.log("Il  ya des résultats");
             tempFilters = filteredFilters;
         }
 
@@ -112,7 +78,13 @@ export const searchEngine = (reformatedRecipes, allFilters) => {
         }
     };
 
+    /**
+     * Search in filters for tags
+     * @param {Array.<Object>} - Recipes data
+     * @param {Array.<Object>} - Filters list
+     */
     const updateDOM = (recipes, filters) => {
+        console.log(filters);
         displayRecipesCards(recipes);
         displayFilters(filters.listUniqueIngredients).ingredients();
         displayFilters(filters.listUniqueAppliances).appliances();
