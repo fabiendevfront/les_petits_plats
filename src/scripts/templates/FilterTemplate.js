@@ -5,7 +5,6 @@
  * @returns {Function}
  */
 export const filterTemplate = (data, category) => {
-    console.log(data);
     /**
      * filters template
      * @returns {HTMLElement}

@@ -13,7 +13,8 @@ export const addTag = (target, container) => {
     arrayTags.push(target.innerHTML);
     const tagDOM = tagTemplate(target).createTag();
     container.appendChild(tagDOM);
-    initSearch.searchByTag(arrayTags);
+    // initSearch.searchByTag(arrayTags);
+    initSearch.search();
     return tagDOM;
 };
 
@@ -26,6 +27,7 @@ export const removeTag = (target) => {
     if (indexTarget !== -1) {
         arrayTags.splice(indexTarget, 1);
     }
-    initSearch.searchByTag(arrayTags);
+    // initSearch.searchByTag(arrayTags);
+    initSearch.search();
     target.remove();
 };

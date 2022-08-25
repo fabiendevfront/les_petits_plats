@@ -4,7 +4,9 @@ import { filterTemplate } from "../templates/FilterTemplate.js";
 import { displaySkeleton, removeSkeleton } from "../controllers/skeleton.js";
 import { toggleFilter, filtersClose } from "../controllers/filter.js";
 import { addTag, removeTag } from "../controllers/tag.js";
-import { stringReformat, sleep } from "../utils/tools.js";
+import { stringReformat } from "../utils/tools.js";
+
+export let researchForm = "";
 
 /*
 * DOM Selection
@@ -19,11 +21,9 @@ const allFilters = document.querySelectorAll(".filter");
  */
 export const displayRecipesCards = async (recipes) => {
     recipesSection.innerHTML = "";
-
+    await displaySkeleton(recipes, recipesSection);
+    await removeSkeleton();
     if (recipes.length) {
-        await displaySkeleton(recipes, recipesSection);
-        await sleep(800);
-        await removeSkeleton();
         await recipes.forEach((data) => {
             const recipeCard = recipeTemplate(data.recipe).createRecipeCard();
             recipesSection.appendChild(recipeCard);
@@ -108,13 +108,14 @@ document.addEventListener("input", (event) => {
     const initElem = event.target;
 
     if (initElem.matches(".search__input")) {
-        const research = stringReformat(initElem.value);
-        initSearch.searchBar(research);
+        researchForm = stringReformat(initElem.value);
+        // initSearch.searchBar(researchForm);
+        initSearch.search(researchForm);
     } else if (initElem.matches(".filter__input")) {
-        const research = stringReformat(initElem.value);
+        const researchFilter = stringReformat(initElem.value);
         const currentListTags = initElem.nextElementSibling;
         const category = initElem.id;
-        initSearch.searchInFilter(research, currentListTags, category);
+        initSearch.searchInFilter(researchFilter, currentListTags, category);
     } else {
         return;
     }

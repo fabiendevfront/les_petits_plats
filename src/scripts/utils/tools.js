@@ -1,16 +1,3 @@
-// OLD VERSION
-// export const reformatData = (recipes) => {
-//     let newDataFormat = [];
-//     recipes.forEach(recipe => {
-//         const txt = recipe.name.concat(" ", recipe.description)
-//             .concat(" ", recipe.appliance)
-//             .concat(" ", recipe.ustensils.toString())
-//             .concat(" ", recipe.ingredients.map((element) => element.ingredient).toString());
-//         newDataFormat.push({recipe: recipe, text: stringReformat(txt)});
-//     });
-//     return newDataFormat;
-// };
-
 /**
  * Reformat recipes data for research
  * @param {Array.<Object>} - Recipes list
