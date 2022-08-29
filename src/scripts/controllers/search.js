@@ -16,15 +16,17 @@ export const searchEngine = (reformatedRecipes, allFilters) => {
     let filteredFilters = [];
 
     /*
-    * Search function by form/tag and update DOM
+    * Search function (v2) by form/tag and update DOM
     */
     const search = () => {
+        let filteredRecipes = [];
         if (researchValue.length >= 3) {
-            results = originalRecipes.filter((recipe) => {
-                return (
-                    recipe.searchBar.includes(researchValue)
-                );
-            });
+            for (const recipe of originalRecipes) {
+                if (recipe.searchBar.includes(researchValue)) {
+                    filteredRecipes.push(recipe);
+                }
+            }
+            results = filteredRecipes;
         } else {
             results = originalRecipes;
         }
