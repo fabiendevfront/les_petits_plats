@@ -21,10 +21,12 @@ export const searchEngine = (reformatedRecipes, allFilters) => {
     const search = () => {
         let filteredRecipes = [];
         if (researchValue.length >= 3) {
-            for (const recipe of originalRecipes) {
-                if (recipe.searchBar.includes(researchValue)) {
-                    filteredRecipes.push(recipe);
+            let i = 0;
+            while (i < originalRecipes.length) {
+                if (originalRecipes[i].searchBar.includes(researchValue)) {
+                    filteredRecipes.push(originalRecipes[i]);
                 }
+                i++;
             }
             results = filteredRecipes;
         } else {
