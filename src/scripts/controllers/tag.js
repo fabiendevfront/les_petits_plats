@@ -12,8 +12,10 @@ export let arrayTags = [];
 export const addTag = (tag, container) => {
     container.innerHTML = "";
     arrayTags.push(tag);
-    arrayTags = [...new Set(arrayTags)];
-    arrayTags.forEach((item) => {
+    const jsonObject = arrayTags.map(JSON.stringify);
+    const uniqueSet = new Set(jsonObject);
+    const uniqueArray = Array.from(uniqueSet).map(JSON.parse);
+    uniqueArray.forEach((item) => {
         let tagDOM = tagTemplate(item.value, item.category).createTag();
         container.appendChild(tagDOM);
     });
