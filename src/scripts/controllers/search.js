@@ -1,4 +1,4 @@
-import { displayRecipesCards, displayFilters, researchValue } from "../pages/index.js";
+import { displayRecipesCards, displayFilters } from "../pages/index.js";
 import { getAllFilters } from "./filter.js";
 import { stringReformat } from "../utils/tools.js";
 import { arrayTags } from "./tag.js";
@@ -9,16 +9,15 @@ import { arrayTags } from "./tag.js";
 * @param {Array.<Object>} - All filters
 * @return {Function}
 */
-export const searchEngine = (reformatedRecipes, allFilters) => {
-    const originalRecipes = reformatedRecipes;
-    const originalFilters = allFilters;
-    let results = [];
+export const searchEngine = (originalRecipes, originalFilters) => {
     let filteredFilters = [];
 
     /*
     * Search function by form/tag and update DOM
     */
-    const search = () => {
+    const search = (researchValue) => {
+        let results = [];
+
         if (researchValue.length >= 3) {
             results = originalRecipes.filter((recipe) => {
                 return (
@@ -90,7 +89,7 @@ export const searchEngine = (reformatedRecipes, allFilters) => {
         displayFilters(filters.listUniqueUstensils).ustensils();
     };
 
-    return { search, searchInFilter, updateDOM  };
+    return { search, searchInFilter, updateDOM };
 };
 
 

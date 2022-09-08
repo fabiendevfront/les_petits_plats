@@ -1,6 +1,7 @@
 import { tagTemplate } from "../templates/TagTemplate.js";
 import { initSearch } from "../app.js";
 import { stringReformat } from "../utils/tools.js";
+import { researchValue } from "../pages/index.js";
 
 export let arrayTags = [];
 
@@ -15,11 +16,12 @@ export const addTag = (tag, container) => {
     const jsonObject = arrayTags.map(JSON.stringify);
     const uniqueSet = new Set(jsonObject);
     const uniqueArray = Array.from(uniqueSet).map(JSON.parse);
-    uniqueArray.forEach((item) => {
+    arrayTags = uniqueArray;
+    arrayTags.forEach((item) => {
         let tagDOM = tagTemplate(item.value, item.category).createTag();
         container.appendChild(tagDOM);
     });
-    initSearch.search();
+    initSearch.search(researchValue);
 };
 
 /**
@@ -32,6 +34,6 @@ export const removeTag = (target) => {
     if (index !== -1) {
         arrayTags.splice(index, 1);
     }
-    initSearch.search();
+    initSearch.search(researchValue);
     target.remove();
 };
