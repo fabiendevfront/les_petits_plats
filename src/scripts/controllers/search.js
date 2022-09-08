@@ -12,8 +12,9 @@ import { arrayTags } from "./tag.js";
 export const searchEngine = (originalRecipes, originalFilters) => {
     let filteredFilters = [];
 
-    /*
-    * Search function by form/tag and update DOM
+    /**
+    * Search function (v1) by form/tag and update DOM
+    * @param {String} - Research value
     */
     const search = (researchValue) => {
         let results = [];
