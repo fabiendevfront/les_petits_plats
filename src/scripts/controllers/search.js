@@ -18,17 +18,15 @@ export const searchEngine = (originalRecipes, originalFilters) => {
     */
     const search = (researchValue) => {
         let results = [];
-        let filteredRecipes = [];
 
         if (researchValue.length >= 3) {
             let i = 0;
             while (i < originalRecipes.length) {
                 if (originalRecipes[i].searchBar.includes(researchValue)) {
-                    filteredRecipes.push(originalRecipes[i]);
+                    results.push(originalRecipes[i]);
                 }
                 i++;
             }
-            results = filteredRecipes;
         } else {
             results = originalRecipes;
         }
