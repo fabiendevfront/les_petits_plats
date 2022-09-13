@@ -1,4 +1,8 @@
-[center]![logo](dist/assets/images/logo.svg)[/center]
+<center>
+
+![logo](dist/assets/images/logo.svg)
+
+</center>
 # Les petits plats - Projet P7 - Développez un algorithme de recherche en JavaScript
 
 Projet réalisé dans le cadre du parcours de développeur d'application Javascript React d'OpenClassrooms.
