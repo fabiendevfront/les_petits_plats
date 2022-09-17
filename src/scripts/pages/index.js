@@ -1,7 +1,6 @@
 import { initSearch } from "../app.js";
 import { recipeTemplate } from "../templates/RecipeTemplate.js";
 import { filterTemplate } from "../templates/FilterTemplate.js";
-import { displaySkeleton, removeSkeleton } from "../controllers/skeleton.js";
 import { toggleFilter, filtersClose } from "../controllers/filter.js";
 import { addTag, removeTag } from "../controllers/tag.js";
 import { stringReformat } from "../utils/tools.js";
@@ -21,8 +20,6 @@ const allFilters = document.querySelectorAll(".filter");
  */
 export const displayRecipesCards = async (recipes) => {
     recipesSection.innerHTML = "";
-    await displaySkeleton(recipes, recipesSection);
-    await removeSkeleton();
     if (recipes.length) {
         await recipes.forEach((data) => {
             const recipeCard = recipeTemplate(data.recipe).createRecipeCard();
