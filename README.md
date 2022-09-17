@@ -1,6 +1,6 @@
 ![logo](dist/assets/images/logo.svg)
 
-# Les petits plats - Projet P7 - Développez un algorithme de recherche en JavaScript
+# Projet P7 - Développez un algorithme de recherche en JavaScript
 
 Projet réalisé dans le cadre du parcours de développeur d'application Javascript React d'OpenClassrooms.
 
@@ -30,7 +30,7 @@ Les petits plats est un site web de recettes de cuisine à l’instar de Marmito
 
 ## Consignes
 
-Développer l'interface du site et implémenter l'algorithme du moteur de recherche pour filtrer les recettes. Creer deux algorithme différents (programmation fonctionnelle et bloucle native).
+Développer l'interface du site et implémenter l'algorithme du moteur de recherche pour filtrer les recettes. Créer deux algorithmes différents (programmation fonctionnelle et boucle native).
 
 
 ## Contraintes techniques additionnelles
@@ -45,11 +45,11 @@ Ces points doivent absolument être respectés durant le développement :
 * Aucune librairie ne sera utilisée pour le JavaScript du moteur de recherche.
 
 ## Compétences évaluées
-* Analyser un problème informatique
-* Développer un algorithme pour résoudre un problème
+* Analyser un problème informatique.
+* Développer un algorithme pour résoudre un problème.
 
 ## Livrables
-* Une fiche d'investigation
+* Une fiche d'investigation.
 * Un dépôt de code sur GitHub qui contient deux branches pour les deux solutions différentes pour la recherche principale.
 
 ## Installation du projet

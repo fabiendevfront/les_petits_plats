@@ -31,9 +31,3 @@ export const stringReformat = (string) => {
     stringReformated = stringReformated.replace(/[,.!?]/g, " ");
     return stringReformated;
 };
-
-/**
- * Create a delay to simulate a loading
- * @param {Number} - Time
- */
-export const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
